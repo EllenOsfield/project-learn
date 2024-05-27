@@ -7,22 +7,14 @@ using Grid = vsg::Array2D<int>;
 
 void print(Grid& grid)
 {
-    for(uint32_t row=0; row<grid.height(); ++row)
+    for(uint32_t row=0
+        ; row<grid.height(); ++row)
    {
        for(uint32_t column=0; column<grid.width(); ++column)
        {
-           std::cout<<" | "<<grid.at(column, row);
+           std::cout<<"|"<<grid.at(column, row);
        }
-       std::cout<<" |"<<std::endl;
-       std::cout<<"  - - - - - - - - "<<std::endl;
-    }
-    for(uint32_t column=0; column<grid.width(); ++column)
-    {
-        for(uint32_t row=0; row<grid.height(); ++row)
-        {
-            std::cout<<"|"<<grid.at(column, row);
-        }
-        std::cout<<"|"<<std::endl;
+       std::cout<<"|"<<std::endl;
     }
 }
 
@@ -52,7 +44,9 @@ int main(int argc, char** argv)
 
     std::cout<<"----------"<<std::endl;
 
+    set(*grid);
+
     print(*grid);
 
-    return 0;
+    return dimensions.x + dimensions.y;
 }
