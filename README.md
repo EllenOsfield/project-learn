@@ -6,7 +6,7 @@
  * git - 
    * [markdown]() - [markdown cheatsheet](https://github.com/im-luka/markdown-cheatsheet) [useful practice](#Markdown) 
     
- * c++ - to make it work [video that may be helpful](https://www.youtube.com/watch?v=vLnPwxZdW4Y) [website that may be useful](https://www.learncpp.com/#google_vignette) [or](https://cplusplus.com/doc/tutorial/) 
+ * c++ - to make it work [video that may be helpful](https://www.youtube.com/watch?v=vLnPwxZdW4Y) [website that may be useful](https://www.learncpp.com/#google_vignette) [or](https://cplusplus.com/doc/tutorial/)  [website](https://www.learncpp.com/cpp-tutorial/function-return-values-value-returning-functions/) 
  * [cmake](http://cmake.org) - generate build files
  * vckgp -
  * vulkan - 
