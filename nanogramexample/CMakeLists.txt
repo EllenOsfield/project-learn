@@ -9,3 +9,7 @@ install(TARGETS array2d RUNTIME DESTINATION bin)
 add_executable(cppgrid "cppgrid.cpp")
 install(TARGETS cppgrid RUNTIME DESTINATION bin)
 
+add_executable(firstattempt "firstattempt.cpp")
+target_link_libraries(firstattempt vsg::vsg vsgXchange::vsgXchange)
+install(TARGETS firstattempt RUNTIME DESTINATION bin)
+
