@@ -53,41 +53,22 @@ public:
         auto intersector = vsg::LineSegmentIntersector::create(*camera, buttonPress.x, buttonPress.y);
         scenegraph->accept(*intersector);
 
-        if (verbose) std::cout << "intersection(" << buttonPress.x << ", " << buttonPress.y << ") " << intersector->intersections.size() << ")" << std::endl;
-
         if (intersector->intersections.empty()) return;
+
+        if (verbose) std::cout << "intersection(" << buttonPress.x << ", " << buttonPress.y << ") " << intersector->intersections.size() << ") ";
 
         // sort the intersections front to back
         std::sort(intersector->intersections.begin(), intersector->intersections.end(), [](auto& lhs, auto& rhs) { return lhs->ratio < rhs->ratio; });
 
-        for (auto& intersection : intersector->intersections)
+        auto& intersection = intersector->intersections.front();
+        for (auto& node : intersection->nodePath)
         {
-            if (verbose) std::cout << "intersection = world(" << intersection->worldIntersection << "), instanceIndex " << intersection->instanceIndex;
-
-            if (verbose)
-            {
-                std::string name;
-                for (auto& node : intersection->nodePath)
-                {
-                    std::cout << ", " << node->className();
-                    if (node->getValue("name", name)) std::cout << ":name=" << name;
-                }
-
-                std::cout << ", Arrays[ ";
-                for (auto& array : intersection->arrays)
-                {
-                    std::cout << array << " ";
-                }
-                std::cout << "] [";
-                for (auto& ir : intersection->indexRatios)
-                {
-                    std::cout << "{" << ir.index << ", " << ir.ratio << "} ";
-                }
-                std::cout << "]";
-
-                std::cout << std::endl;
-            }
+            std::cout << ", " << node->className();
+            std::string name;
+            if (node->getValue("name", name)) std::cout << ":name=" << name;
         }
+
+        std::cout<<std::endl;
     }
 
 protected:
