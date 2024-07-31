@@ -29,19 +29,8 @@ void set(Grid& grid)
     }
 }
 
-int main(int argc, char** argv)
+vsg::ref_ptr<vsg::Node> createScene(Grid& grid)
 {
-    vsg::CommandLine arguments(&argc, argv);
-
-    auto dimensions = arguments.value(vsg::uivec2(4,4), "-s");
-    auto outputFilename = arguments.value(vsg::Path("root.vsgt"), "-o");
-
-    std::cout<<"size "<<dimensions<<std::endl;
-
-    auto grid = Grid::create(dimensions.x, dimensions.y);
-
-    print(*grid);
-
     auto scene = vsg::Group::create();
 
     auto builder = vsg::Builder::create();
@@ -51,9 +40,9 @@ int main(int argc, char** argv)
     geomInfo.position.x = 0.0;
     geomInfo.position.y = 0.0;
 
-    for(uint32_t row=0; row<grid->height(); ++row)
+    for(uint32_t row=0; row<grid.height(); ++row)
     {
-        for(uint32_t column=0; column<grid->width(); ++column)
+        for(uint32_t column=0; column<grid.width(); ++column)
         {
             auto sw = vsg::Switch::create();
             scene->addChild(sw);
@@ -69,6 +58,25 @@ int main(int argc, char** argv)
         geomInfo.position.x = 0.0;
         geomInfo.position.y += 2.0;
     }
+
+    return scene;
+}
+
+int main(int argc, char** argv)
+{
+    vsg::CommandLine arguments(&argc, argv);
+
+    auto dimensions = arguments.value(vsg::uivec2(4,4), "-s");
+    auto outputFilename = arguments.value(vsg::Path("root.vsgt"), "-o");
+
+    std::cout<<"size "<<dimensions<<std::endl;
+
+    auto grid = Grid::create(dimensions.x, dimensions.y);
+
+    print(*grid);
+
+
+    auto scene = createScene(*grid);
 
     vsg::write(scene, outputFilename);
 
