@@ -64,8 +64,24 @@ public:
         for (auto& node : intersection->nodePath)
         {
             std::cout << ", " << node->className();
-            std::string name;
-            if (node->getValue("name", name)) std::cout << ":name=" << name;
+
+            auto const_sw = node->cast<vsg::Switch>();
+            auto sw = const_cast<vsg::Switch*>(const_sw);
+            if (sw)
+            {
+                vsg::uivec2 position;
+                uint32_t index;
+                if (node->getValue("position", position) && node->getValue("index", index))
+                {
+                    std::cout<<": position = {"<<position<<"} index = "<<index;
+                }
+
+                // update index to next child
+                index = (index + 1) % sw->children.size();
+                sw->setValue("index", index);
+
+                sw->setSingleChildOn(index);
+            }
         }
 
         std::cout<<std::endl;
@@ -93,11 +109,16 @@ vsg::ref_ptr<vsg::Group> createScene(Grid& grid)
             auto sw = vsg::Switch::create();
             scene->addChild(sw);
 
+            uint32_t index = (row+column)%3;
+
+            sw->setValue("position", vsg::uivec2(row, column));
+            sw->setValue("index", index);
+
             sw->addChild(true, builder->createQuad(geomInfo,stateInfo));
             sw->addChild(true, builder->createSphere(geomInfo,stateInfo));
             sw->addChild(true, builder->createCylinder(geomInfo,stateInfo));
 
-            sw->setSingleChildOn((row+column)%3);
+            sw->setSingleChildOn(index);
 
             geomInfo.position.x += 2.0;
         }
