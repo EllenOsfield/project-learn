@@ -89,7 +89,7 @@ int main(int argc, char** argv)
     double radius = vsg::WGS_84_RADIUS_EQUATOR;
     double nearFarRatio = 0.001;
 
-    auto lookAt = vsg::LookAt::create(vsg::dvec3(0.0, 0.0, 10.0), vsg::dvec3(0.0, 0.0, 0.0), vsg::dvec3(0.0, 1.0, 0.0));
+    auto lookAt = vsg::LookAt::create(vsg::dvec3(2.0, 2.0, 10.0), vsg::dvec3(2.0, 2.0, 0.0), vsg::dvec3(0.0, 1.0, 0.0));
     auto perspective = vsg::Perspective::create(60.0, static_cast<double>(window->extent2D().width) / static_cast<double>(window->extent2D().height), 0.01, 20.0);
     auto camera = vsg::Camera::create(perspective, lookAt, vsg::ViewportState::create(window->extent2D()));
 
