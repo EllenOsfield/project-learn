@@ -23,7 +23,7 @@ void set(Grid& grid)
     {
         for(uint32_t column=0; column<grid.width(); ++column)
         {
-            grid.set(column, row, 9);
+            grid.set(column, row, (column+row)%3);
         }
         std::cout<<"woah"<<std::endl;
     }
@@ -111,7 +111,7 @@ vsg::ref_ptr<vsg::Group> createScene(Grid& grid)
             auto sw = vsg::Switch::create();
             scene->addChild(sw);
 
-            uint32_t index = (row+column)%3;
+            uint32_t index = grid(column,row);
 
             sw->setValue("position", vsg::uivec2(row, column));
             sw->setValue("index", index);
@@ -122,7 +122,7 @@ vsg::ref_ptr<vsg::Group> createScene(Grid& grid)
             geomInfo.color.set(1.0f, 1.0f, 0.0f, 1.0f);;
             sw->addChild(true, builder->createQuad(geomInfo,stateInfo));
 
-            geomInfo.color.set(1.0f, 0.0f, 1.0f, 1.0f);;
+            geomInfo.color.set(1.0f, 2.0f, 1.0f, 1.0f);;
             sw->addChild(true, builder->createQuad(geomInfo,stateInfo));
 
             sw->setSingleChildOn(index);
@@ -142,11 +142,29 @@ int main(int argc, char** argv)
     vsg::CommandLine arguments(&argc, argv);
 
     auto dimensions = arguments.value(vsg::uivec2(4,4), "-s");
-    auto outputFilename = arguments.value(vsg::Path("root.vsgt"), "-o");
+    auto readGridFilename = arguments.value(vsg::Path(""), "--rg");
+    auto outputGridFilename = arguments.value(vsg::Path(""), "--og");
+    auto outputFilename = arguments.value(vsg::Path(""), "-o");
 
     std::cout<<"size "<<dimensions<<std::endl;
 
-    auto grid = Grid::create(dimensions.x, dimensions.y);
+    vsg::ref_ptr<Grid> grid;
+    if (readGridFilename)
+    {
+        grid = vsg::read_cast<Grid>(readGridFilename);
+        if (grid) dimensions.set(grid->width(), grid->height());
+    }
+
+    if (!grid)
+    {
+        grid = Grid::create(dimensions.x, dimensions.y);
+        set(*grid);
+    }
+
+    if (outputGridFilename)
+    {
+        vsg::write(grid, outputGridFilename);
+    }
 
     print(*grid);
 
@@ -203,7 +221,10 @@ int main(int argc, char** argv)
         viewer->present();
     }
 
-    vsg::write(scene, outputFilename);
+    if (outputFilename)
+    {
+        vsg::write(scene, outputFilename);
+    }
 
     return 0;
 }
