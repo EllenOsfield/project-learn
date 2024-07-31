@@ -29,7 +29,72 @@ void set(Grid& grid)
     }
 }
 
-vsg::ref_ptr<vsg::Node> createScene(Grid& grid)
+
+class IntersectionHandler : public vsg::Inherit<vsg::Visitor, IntersectionHandler>
+{
+public:
+    vsg::ref_ptr<vsg::Camera> camera;
+    vsg::ref_ptr<vsg::Group> scenegraph;
+    double scale = 1.0;
+    bool verbose = true;
+
+    IntersectionHandler(vsg::ref_ptr<vsg::Camera> in_camera, vsg::ref_ptr<vsg::Group> in_scenegraph) :
+        camera(in_camera),
+        scenegraph(in_scenegraph)
+    {
+    }
+
+    void apply(vsg::KeyPressEvent& keyPress) override
+    {
+    }
+
+    void apply(vsg::ButtonPressEvent& buttonPress) override
+    {
+        auto intersector = vsg::LineSegmentIntersector::create(*camera, buttonPress.x, buttonPress.y);
+        scenegraph->accept(*intersector);
+
+        if (verbose) std::cout << "intersection(" << buttonPress.x << ", " << buttonPress.y << ") " << intersector->intersections.size() << ")" << std::endl;
+
+        if (intersector->intersections.empty()) return;
+
+        // sort the intersections front to back
+        std::sort(intersector->intersections.begin(), intersector->intersections.end(), [](auto& lhs, auto& rhs) { return lhs->ratio < rhs->ratio; });
+
+        for (auto& intersection : intersector->intersections)
+        {
+            if (verbose) std::cout << "intersection = world(" << intersection->worldIntersection << "), instanceIndex " << intersection->instanceIndex;
+
+            if (verbose)
+            {
+                std::string name;
+                for (auto& node : intersection->nodePath)
+                {
+                    std::cout << ", " << node->className();
+                    if (node->getValue("name", name)) std::cout << ":name=" << name;
+                }
+
+                std::cout << ", Arrays[ ";
+                for (auto& array : intersection->arrays)
+                {
+                    std::cout << array << " ";
+                }
+                std::cout << "] [";
+                for (auto& ir : intersection->indexRatios)
+                {
+                    std::cout << "{" << ir.index << ", " << ir.ratio << "} ";
+                }
+                std::cout << "]";
+
+                std::cout << std::endl;
+            }
+        }
+    }
+
+protected:
+};
+
+
+vsg::ref_ptr<vsg::Group> createScene(Grid& grid)
 {
     auto scene = vsg::Group::create();
 
@@ -98,6 +163,10 @@ int main(int argc, char** argv)
 
     // add a trackball event handler to control the camera view using the mouse
     viewer->addEventHandler(vsg::Trackball::create(camera));
+
+    auto intersectionHandler = IntersectionHandler::create(camera, scene);
+    viewer->addEventHandler(intersectionHandler);
+
 
     // create a command graph to render the scene on specified window
     auto commandGraph = vsg::createCommandGraphForView(window, camera, scene);
