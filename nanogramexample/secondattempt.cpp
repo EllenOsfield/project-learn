@@ -90,8 +90,39 @@ public:
 protected:
 };
 
+class UpdateGrid : public vsg::Visitor
+{
+public:
 
-vsg::ref_ptr<vsg::Group> createScene(Grid& grid)
+    vsg::ref_ptr<Grid> grid;
+
+    void apply (vsg::Object& object) override
+    {
+        object.traverse(*this);
+    }
+
+    void apply (vsg::Group& group) override
+    {
+        auto local_grid = group.getObject<Grid>("grid");
+        if (local_grid) grid = local_grid;
+
+        group.traverse(*this);
+    }
+
+    void apply(vsg::Switch& sw) override
+    {
+        vsg::uivec2 position;
+        uint32_t index;
+        if (grid && sw.getValue("position", position) && sw.getValue("index", index))
+        {
+            grid->set(position.x, position.y, index);
+        }
+    }
+
+};
+
+
+vsg::ref_ptr<vsg::Group> createScene(vsg::ref_ptr<Grid> grid, float spacing)
 {
     auto scene = vsg::Group::create();
 
@@ -102,36 +133,37 @@ vsg::ref_ptr<vsg::Group> createScene(Grid& grid)
     geomInfo.position.x = 0.0;
     geomInfo.position.y = 0.0;
 
+    scene->setObject("grid", grid);
 
-
-    for(uint32_t row=0; row<grid.height(); ++row)
+    for(uint32_t row=0; row<grid->height(); ++row)
     {
-        for(uint32_t column=0; column<grid.width(); ++column)
+        for(uint32_t column=0; column<grid->width(); ++column)
         {
             auto sw = vsg::Switch::create();
             scene->addChild(sw);
 
-            uint32_t index = grid(column,row);
+            uint32_t index = grid->at(column,row);
 
-            sw->setValue("position", vsg::uivec2(row, column));
+            sw->setValue("position", vsg::uivec2(column, row));
             sw->setValue("index", index);
 
             geomInfo.color.set(1.0f, 0.0f, 0.0f, 1.0f);;
             sw->addChild(true, builder->createQuad(geomInfo,stateInfo));
 
-            geomInfo.color.set(1.0f, 1.0f, 0.0f, 1.0f);;
+            geomInfo.color.set(0.0f, 0.0f, 0.0f, 0.0f);;
             sw->addChild(true, builder->createQuad(geomInfo,stateInfo));
 
-            geomInfo.color.set(1.0f, 2.0f, 1.0f, 1.0f);;
+            geomInfo.color.set(1.0f, 1.0f, 1.0f, 1.0f);;
             sw->addChild(true, builder->createQuad(geomInfo,stateInfo));
 
             sw->setSingleChildOn(index);
 
 
-            geomInfo.position.x += 2.0;
+            geomInfo.position.x += spacing;
         }
         geomInfo.position.x = 0.0;
-        geomInfo.position.y += 2.0;
+        geomInfo.position.y += spacing;
+
     }
 
     return scene;
@@ -142,34 +174,37 @@ int main(int argc, char** argv)
     vsg::CommandLine arguments(&argc, argv);
 
     auto dimensions = arguments.value(vsg::uivec2(4,4), "-s");
-    auto readGridFilename = arguments.value(vsg::Path(""), "--rg");
-    auto outputGridFilename = arguments.value(vsg::Path(""), "--og");
+    auto gridsFilename = arguments.value(vsg::Path("grids.vsgt"), "--grids");
     auto outputFilename = arguments.value(vsg::Path(""), "-o");
 
     std::cout<<"size "<<dimensions<<std::endl;
 
-    vsg::ref_ptr<Grid> grid;
-    if (readGridFilename)
+    // read or create the grids container
+    auto grids = vsg::read_cast<vsg::Objects>(gridsFilename);
+    if (!grids) grids = vsg::Objects::create();
+
+    // read any individual grid files and add them to grids
+    vsg::Path gridFilename;
+    while (arguments.read("-g", gridFilename))
     {
-        grid = vsg::read_cast<Grid>(readGridFilename);
-        if (grid) dimensions.set(grid->width(), grid->height());
+        auto grid = vsg::read_cast<Grid>(gridFilename);
+        if (!grid) grids->addChild(grid);
     }
 
-    if (!grid)
+    // if grids is empty then add a grid
+    if (grids->children.empty())
     {
-        grid = Grid::create(dimensions.x, dimensions.y);
-        set(*grid);
+        auto grid = Grid::create(dimensions.x, dimensions.y);
+        grids->addChild(grid);
     }
 
-    if (outputGridFilename)
-    {
-        vsg::write(grid, outputGridFilename);
-    }
+    vsg::ref_ptr<Grid> grid = grids->children.front().cast<Grid>();
+    if (!grid) Grid::create(dimensions.x, dimensions.y);
 
     print(*grid);
 
-
-    auto scene = createScene(*grid);
+    float spacing = 1.1;
+    auto scene = createScene(grid, spacing);
 
     auto viewer = vsg::Viewer::create();
 
@@ -179,7 +214,7 @@ int main(int argc, char** argv)
     viewer->addWindow(window);
 
     // set up the camera
-    vsg::dvec3 center(dimensions.x - 1.0, dimensions.y - 1.0, 0.0);
+    vsg::dvec3 center((dimensions.x - 1.0)* 0.5 *spacing, (dimensions.y - 1.0)*0.5*spacing, 0.0);
     vsg::dvec3 eye = center + vsg::dvec3(0.0, 0.0, vsg::length(dimensions));
 
     auto lookAt = vsg::LookAt::create(eye, center, vsg::dvec3(0.0, 1.0, 0.0));
@@ -190,7 +225,7 @@ int main(int argc, char** argv)
     viewer->addEventHandler(vsg::CloseHandler::create(viewer));
 
     // add a trackball event handler to control the camera view using the mouse
-    viewer->addEventHandler(vsg::Trackball::create(camera));
+    // viewer->addEventHandler(vsg::Trackball::create(camera));
 
     auto intersectionHandler = IntersectionHandler::create(camera, scene);
     viewer->addEventHandler(intersectionHandler);
@@ -219,6 +254,14 @@ int main(int argc, char** argv)
 
         // wait for completion of the rendering and present the resulting color buffer to the Window's swap chain.
         viewer->present();
+    }
+
+    UpdateGrid ug;
+    scene-> accept(ug);
+
+    if (gridsFilename)
+    {
+        vsg::write(grids, gridsFilename);
     }
 
     if (outputFilename)
