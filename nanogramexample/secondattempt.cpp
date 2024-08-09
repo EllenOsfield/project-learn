@@ -47,14 +47,26 @@ public:
     {
     }
 
+#if 0
+    void apply(vsg::MoveEvent& moveEvent) override
+    {
+        if (moveEvent.mask != 0) select(moveEvent);
+    }
+#endif
+
     void apply(vsg::ButtonPressEvent& buttonPress) override
     {
-        auto intersector = vsg::LineSegmentIntersector::create(*camera, buttonPress.x, buttonPress.y);
+        select(buttonPress);
+    }
+
+    void select(vsg::PointerEvent& pointerEvent)
+    {
+        auto intersector = vsg::LineSegmentIntersector::create(*camera, pointerEvent.x, pointerEvent.y);
         scenegraph->accept(*intersector);
 
         if (intersector->intersections.empty()) return;
 
-        if (verbose) std::cout << "intersection(" << buttonPress.x << ", " << buttonPress.y << ") " << intersector->intersections.size() << ") ";
+        if (verbose) std::cout << "intersection(" << pointerEvent.x << ", " << pointerEvent.y << ") " << intersector->intersections.size() << ") ";
 
         // sort the intersections front to back
         std::sort(intersector->intersections.begin(), intersector->intersections.end(), [](auto& lhs, auto& rhs) { return lhs->ratio < rhs->ratio; });
