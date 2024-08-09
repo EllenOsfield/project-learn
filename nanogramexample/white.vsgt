@@ -1,18 +1,16 @@
 #vsga 1.1.4
-Root id=1 vsg::intArray2D
+Root id=1 vsg::Objects
 {
   userObjects 0
-  properties 0 4 0 1 1 1 0 -1 0
-  width 10
-  height 10
-  storage id=0
-  data 0 1 2 0 1 2 0 1 2 0 1 2
-   0 1 2 0 1 2 0 1 2 0 1 2
-   0 1 2 0 1 2 0 1 2 0 1 2
-   0 1 2 0 1 2 0 1 2 0 1 2
-   0 1 2 0 1 2 0 1 2 0 1 2
-   0 1 2 0 1 2 0 1 2 0 1 2
-   0 1 2 0 1 2 0 1 2 0 1 2
-   0 1 2 0 1 2 0 1 2 0 1 2
-   0 1 2 0
+  children 1
+  vsg::Object id=2 vsg::intArray2D
+  {
+    userObjects 0
+    properties 0 4 0 1 1 1 0 -1 0
+    width 4
+    height 4
+    storage id=0
+    data 2 2 2 2 2 2 2 2 2 2 2 2
+     2 2 2 2
+  }
 }

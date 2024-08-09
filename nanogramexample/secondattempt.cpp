@@ -6,8 +6,7 @@ using Grid = vsg::Array2D<int>;
 
 void print(Grid& grid)
 {
-    for(uint32_t row=0
-        ; row<grid.height(); ++row)
+    for(int32_t row=grid.height()-1; row>=0 ; --row)
    {
        for(uint32_t column=0; column<grid.width(); ++column)
        {
@@ -214,12 +213,19 @@ int main(int argc, char** argv)
     viewer->addWindow(window);
 
     // set up the camera
-    vsg::dvec3 center((dimensions.x - 1.0)* 0.5 *spacing, (dimensions.y - 1.0)*0.5*spacing, 0.0);
-    vsg::dvec3 eye = center + vsg::dvec3(0.0, 0.0, vsg::length(dimensions));
+    vsg::ComputeBounds computeBounds;
+    scene->accept(computeBounds);
+    double radius = vsg::length(computeBounds.bounds.max - computeBounds.bounds.min) * 0.6;
+    double nearFarRatio = 0.001;
 
-    auto lookAt = vsg::LookAt::create(eye, center, vsg::dvec3(0.0, 1.0, 0.0));
-    auto perspective = vsg::Perspective::create(90.0, static_cast<double>(window->extent2D().width) / static_cast<double>(window->extent2D().height), 0.01, 100.0);
-    auto camera = vsg::Camera::create(perspective, lookAt, vsg::ViewportState::create(window->extent2D()));
+    vsg::dvec3 centre = (computeBounds.bounds.min + computeBounds.bounds.max) * 0.5;
+    vsg::dvec3 eye = centre + vsg::dvec3(0.0, 0.0, radius * 3.5);
+
+    // set up the camera
+    auto viewport = vsg::ViewportState::create(window->extent2D());
+    auto perspective = vsg::Perspective::create(30.0, static_cast<double>(window->extent2D().width) / static_cast<double>(window->extent2D().height), nearFarRatio * radius, radius * 1000.0);
+    auto lookAt = vsg::LookAt::create(eye, centre, vsg::dvec3(0.0, 1.0, 0.0));
+    auto camera = vsg::Camera::create(perspective, lookAt, viewport);
 
     // add close handler to respond to pressing the window close window button and pressing escape
     viewer->addEventHandler(vsg::CloseHandler::create(viewer));
@@ -230,8 +236,6 @@ int main(int argc, char** argv)
     auto intersectionHandler = IntersectionHandler::create(camera, scene);
     viewer->addEventHandler(intersectionHandler);
 
-
-    // create a command graph to render the scene on specified window
     auto commandGraph = vsg::createCommandGraphForView(window, camera, scene);
     viewer->assignRecordAndSubmitTaskAndPresentation({commandGraph});
 
