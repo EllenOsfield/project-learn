@@ -17,3 +17,8 @@ add_executable(secondattempt "secondattempt.cpp")
 target_link_libraries(secondattempt vsg::vsg vsgXchange::vsgXchange)
 install(TARGETS secondattempt RUNTIME DESTINATION bin)
 
+add_executable(thirdattempt "thirdattempt.cpp")
+target_link_libraries(thirdattempt vsg::vsg vsgXchange::vsgXchange)
+install(TARGETS thirdattempt RUNTIME DESTINATION bin)
+
+

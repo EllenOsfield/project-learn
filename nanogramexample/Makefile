@@ -231,6 +231,20 @@ secondattempt/fast:
 	cd /home/ellen/dev/project-learn && $(MAKE) $(MAKESILENT) -f nanogramexample/CMakeFiles/secondattempt.dir/build.make nanogramexample/CMakeFiles/secondattempt.dir/build
 .PHONY : secondattempt/fast
 
+# Convenience name for target.
+nanogramexample/CMakeFiles/thirdattempt.dir/rule:
+	cd /home/ellen/dev/project-learn && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 nanogramexample/CMakeFiles/thirdattempt.dir/rule
+.PHONY : nanogramexample/CMakeFiles/thirdattempt.dir/rule
+
+# Convenience name for target.
+thirdattempt: nanogramexample/CMakeFiles/thirdattempt.dir/rule
+.PHONY : thirdattempt
+
+# fast build rule for target.
+thirdattempt/fast:
+	cd /home/ellen/dev/project-learn && $(MAKE) $(MAKESILENT) -f nanogramexample/CMakeFiles/thirdattempt.dir/build.make nanogramexample/CMakeFiles/thirdattempt.dir/build
+.PHONY : thirdattempt/fast
+
 array2d.o: array2d.cpp.o
 .PHONY : array2d.o
 
@@ -351,6 +365,30 @@ secondattempt.cpp.s:
 	cd /home/ellen/dev/project-learn && $(MAKE) $(MAKESILENT) -f nanogramexample/CMakeFiles/secondattempt.dir/build.make nanogramexample/CMakeFiles/secondattempt.dir/secondattempt.cpp.s
 .PHONY : secondattempt.cpp.s
 
+thirdattempt.o: thirdattempt.cpp.o
+.PHONY : thirdattempt.o
+
+# target to build an object file
+thirdattempt.cpp.o:
+	cd /home/ellen/dev/project-learn && $(MAKE) $(MAKESILENT) -f nanogramexample/CMakeFiles/thirdattempt.dir/build.make nanogramexample/CMakeFiles/thirdattempt.dir/thirdattempt.cpp.o
+.PHONY : thirdattempt.cpp.o
+
+thirdattempt.i: thirdattempt.cpp.i
+.PHONY : thirdattempt.i
+
+# target to preprocess a source file
+thirdattempt.cpp.i:
+	cd /home/ellen/dev/project-learn && $(MAKE) $(MAKESILENT) -f nanogramexample/CMakeFiles/thirdattempt.dir/build.make nanogramexample/CMakeFiles/thirdattempt.dir/thirdattempt.cpp.i
+.PHONY : thirdattempt.cpp.i
+
+thirdattempt.s: thirdattempt.cpp.s
+.PHONY : thirdattempt.s
+
+# target to generate assembly for a file
+thirdattempt.cpp.s:
+	cd /home/ellen/dev/project-learn && $(MAKE) $(MAKESILENT) -f nanogramexample/CMakeFiles/thirdattempt.dir/build.make nanogramexample/CMakeFiles/thirdattempt.dir/thirdattempt.cpp.s
+.PHONY : thirdattempt.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -368,6 +406,7 @@ help:
 	@echo "... firstattempt"
 	@echo "... nanogram"
 	@echo "... secondattempt"
+	@echo "... thirdattempt"
 	@echo "... array2d.o"
 	@echo "... array2d.i"
 	@echo "... array2d.s"
@@ -383,6 +422,9 @@ help:
 	@echo "... secondattempt.o"
 	@echo "... secondattempt.i"
 	@echo "... secondattempt.s"
+	@echo "... thirdattempt.o"
+	@echo "... thirdattempt.i"
+	@echo "... thirdattempt.s"
 .PHONY : help
 
 
