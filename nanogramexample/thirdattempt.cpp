@@ -135,15 +135,40 @@ public:
 int counter(Grid& grid)
 {
    int sum = 0 ;
+   int mus = 0;
+   int ums = 0;
+   int msu = 0;
+   int rtimes = 0;
+   int ctimes = 0;
+   int num = {};
 
     for(uint32_t row=0; row<grid.height(); ++row)
         {
             for(uint32_t column=0; column<grid.width(); ++column)
             {
                 if (grid.at(column,row) == 1)
-                    sum += 1;
+                    sum += 1,
+                    mus += 1,
+                    ums += 1;
+                ctimes +=1;
+                if (ums == 1)
+                    msu += 1;
+                else
+                    if (msu != 0)
+                        num = msu,
+                        std::cout<<"num "<<num<<std::endl,
+                        msu = 0;
+                    else
+                        msu = 0;
+
+               // std::cout<<"column "<<ctimes<<" sum = "<<ums<<" and current run  = "<<msu<<std::endl;
+                ums = 0;
             }
-            std::cout<<"woah"<<std::endl;
+            msu = 0;
+            rtimes += 1;
+            std::cout<<"row "<<rtimes<<" sum = "<<mus<<std::endl;
+            mus = 0;
+
         }
     std::cout<<"total sum ="<<sum<<std::endl;
 
