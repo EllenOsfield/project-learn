@@ -1,0 +1,8 @@
+want to add text that tells user how many black squares are needed in each row and column
+need loop? that will go through each column and count how many of the values are 1 and add to counter
+if there is a 0 or 2 between ones a new counter needs to start
+go through all columns
+then go through all rows doing same thing
+have text that correlates to these numbers for each row and column
+
+needs to then also have text on the users 'empty' grid that is the same so they can know what to do

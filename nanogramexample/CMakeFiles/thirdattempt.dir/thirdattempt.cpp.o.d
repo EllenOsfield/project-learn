@@ -1,0 +1,524 @@
+nanogramexample/CMakeFiles/thirdattempt.dir/thirdattempt.cpp.o: \
+ /home/ellen/dev/project-learn/nanogramexample/thirdattempt.cpp \
+ /usr/include/stdc-predef.h /usr/include/c++/13/iostream \
+ /usr/include/c++/13/bits/requires_hosted.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
+ /usr/include/features.h /usr/include/features-time64.h \
+ /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+ /usr/include/x86_64-linux-gnu/bits/timesize.h \
+ /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+ /usr/include/x86_64-linux-gnu/bits/long-double.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/cpu_defines.h \
+ /usr/include/c++/13/pstl/pstl_config.h /usr/include/c++/13/ostream \
+ /usr/include/c++/13/ios /usr/include/c++/13/iosfwd \
+ /usr/include/c++/13/bits/stringfwd.h \
+ /usr/include/c++/13/bits/memoryfwd.h /usr/include/c++/13/bits/postypes.h \
+ /usr/include/c++/13/cwchar /usr/include/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+ /usr/include/x86_64-linux-gnu/bits/floatn.h \
+ /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+ /usr/include/c++/13/exception /usr/include/c++/13/bits/exception.h \
+ /usr/include/c++/13/bits/exception_ptr.h \
+ /usr/include/c++/13/bits/exception_defines.h \
+ /usr/include/c++/13/bits/cxxabi_init_exception.h \
+ /usr/include/c++/13/typeinfo /usr/include/c++/13/bits/hash_bytes.h \
+ /usr/include/c++/13/new /usr/include/c++/13/bits/move.h \
+ /usr/include/c++/13/type_traits \
+ /usr/include/c++/13/bits/nested_exception.h \
+ /usr/include/c++/13/bits/char_traits.h \
+ /usr/include/c++/13/bits/localefwd.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/c++locale.h \
+ /usr/include/c++/13/clocale /usr/include/locale.h \
+ /usr/include/x86_64-linux-gnu/bits/locale.h /usr/include/c++/13/cctype \
+ /usr/include/ctype.h /usr/include/x86_64-linux-gnu/bits/types.h \
+ /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+ /usr/include/x86_64-linux-gnu/bits/time64.h \
+ /usr/include/x86_64-linux-gnu/bits/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/endianness.h \
+ /usr/include/c++/13/bits/ios_base.h /usr/include/c++/13/ext/atomicity.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/gthr.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/gthr-default.h \
+ /usr/include/pthread.h /usr/include/sched.h \
+ /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+ /usr/include/x86_64-linux-gnu/bits/sched.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+ /usr/include/x86_64-linux-gnu/bits/cpu-set.h /usr/include/time.h \
+ /usr/include/x86_64-linux-gnu/bits/time.h \
+ /usr/include/x86_64-linux-gnu/bits/timex.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+ /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+ /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+ /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+ /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
+ /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
+ /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
+ /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
+ /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
+ /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
+ /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/atomic_word.h \
+ /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
+ /usr/include/c++/13/bits/locale_classes.h /usr/include/c++/13/string \
+ /usr/include/c++/13/bits/allocator.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/c++allocator.h \
+ /usr/include/c++/13/bits/new_allocator.h \
+ /usr/include/c++/13/bits/functexcept.h \
+ /usr/include/c++/13/bits/cpp_type_traits.h \
+ /usr/include/c++/13/bits/ostream_insert.h \
+ /usr/include/c++/13/bits/cxxabi_forced.h \
+ /usr/include/c++/13/bits/stl_iterator_base_funcs.h \
+ /usr/include/c++/13/bits/concept_check.h \
+ /usr/include/c++/13/debug/assertions.h \
+ /usr/include/c++/13/bits/stl_iterator_base_types.h \
+ /usr/include/c++/13/bits/stl_iterator.h \
+ /usr/include/c++/13/ext/type_traits.h \
+ /usr/include/c++/13/bits/ptr_traits.h \
+ /usr/include/c++/13/bits/stl_function.h \
+ /usr/include/c++/13/backward/binders.h \
+ /usr/include/c++/13/ext/numeric_traits.h \
+ /usr/include/c++/13/bits/stl_algobase.h \
+ /usr/include/c++/13/bits/stl_pair.h /usr/include/c++/13/bits/utility.h \
+ /usr/include/c++/13/debug/debug.h \
+ /usr/include/c++/13/bits/predefined_ops.h /usr/include/c++/13/bit \
+ /usr/include/c++/13/bits/refwrap.h /usr/include/c++/13/bits/invoke.h \
+ /usr/include/c++/13/bits/range_access.h \
+ /usr/include/c++/13/initializer_list \
+ /usr/include/c++/13/bits/basic_string.h \
+ /usr/include/c++/13/ext/alloc_traits.h \
+ /usr/include/c++/13/bits/alloc_traits.h \
+ /usr/include/c++/13/bits/stl_construct.h /usr/include/c++/13/string_view \
+ /usr/include/c++/13/bits/functional_hash.h \
+ /usr/include/c++/13/bits/string_view.tcc \
+ /usr/include/c++/13/ext/string_conversions.h /usr/include/c++/13/cstdlib \
+ /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+ /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+ /usr/include/x86_64-linux-gnu/sys/types.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-intn.h /usr/include/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+ /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
+ /usr/include/x86_64-linux-gnu/sys/select.h \
+ /usr/include/x86_64-linux-gnu/bits/select.h \
+ /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+ /usr/include/alloca.h /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+ /usr/include/c++/13/bits/std_abs.h /usr/include/c++/13/cstdio \
+ /usr/include/stdio.h /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+ /usr/include/c++/13/cerrno /usr/include/errno.h \
+ /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/x86_64-linux-gnu/asm/errno.h \
+ /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
+ /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
+ /usr/include/c++/13/bits/charconv.h \
+ /usr/include/c++/13/bits/basic_string.tcc \
+ /usr/include/c++/13/bits/memory_resource.h /usr/include/c++/13/cstddef \
+ /usr/include/c++/13/bits/uses_allocator.h \
+ /usr/include/c++/13/bits/uses_allocator_args.h /usr/include/c++/13/tuple \
+ /usr/include/c++/13/bits/locale_classes.tcc \
+ /usr/include/c++/13/system_error \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/error_constants.h \
+ /usr/include/c++/13/stdexcept /usr/include/c++/13/streambuf \
+ /usr/include/c++/13/bits/streambuf.tcc \
+ /usr/include/c++/13/bits/basic_ios.h \
+ /usr/include/c++/13/bits/locale_facets.h /usr/include/c++/13/cwctype \
+ /usr/include/wctype.h /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/ctype_base.h \
+ /usr/include/c++/13/bits/streambuf_iterator.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/ctype_inline.h \
+ /usr/include/c++/13/bits/locale_facets.tcc \
+ /usr/include/c++/13/bits/basic_ios.tcc \
+ /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
+ /usr/include/c++/13/bits/istream.tcc \
+ /home/ellen/install/include/vsg/all.h \
+ /home/ellen/install/include/vsg/core/Allocator.h \
+ /home/ellen/install/include/vsg/core/MemorySlots.h \
+ /home/ellen/install/include/vsg/core/Export.h /usr/include/c++/13/list \
+ /usr/include/c++/13/bits/stl_list.h \
+ /usr/include/c++/13/bits/allocated_ptr.h \
+ /usr/include/c++/13/ext/aligned_buffer.h \
+ /usr/include/c++/13/bits/list.tcc /usr/include/c++/13/map \
+ /usr/include/c++/13/bits/stl_tree.h \
+ /usr/include/c++/13/bits/node_handle.h \
+ /usr/include/c++/13/bits/stl_map.h \
+ /usr/include/c++/13/bits/stl_multimap.h \
+ /usr/include/c++/13/bits/erase_if.h /usr/include/c++/13/vector \
+ /usr/include/c++/13/bits/stl_uninitialized.h \
+ /usr/include/c++/13/bits/stl_vector.h \
+ /usr/include/c++/13/bits/stl_bvector.h \
+ /usr/include/c++/13/bits/vector.tcc /usr/include/c++/13/memory \
+ /usr/include/c++/13/bits/stl_tempbuf.h \
+ /usr/include/c++/13/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/13/bits/align.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
+ /usr/include/c++/13/bits/unique_ptr.h \
+ /usr/include/c++/13/bits/shared_ptr.h \
+ /usr/include/c++/13/bits/shared_ptr_base.h \
+ /usr/include/c++/13/ext/concurrence.h \
+ /usr/include/c++/13/bits/shared_ptr_atomic.h \
+ /usr/include/c++/13/bits/atomic_base.h \
+ /usr/include/c++/13/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/13/backward/auto_ptr.h \
+ /usr/include/c++/13/pstl/glue_memory_defs.h \
+ /usr/include/c++/13/pstl/execution_defs.h /usr/include/c++/13/mutex \
+ /usr/include/c++/13/bits/chrono.h /usr/include/c++/13/ratio \
+ /usr/include/c++/13/cstdint /usr/include/c++/13/limits \
+ /usr/include/c++/13/ctime /usr/include/c++/13/bits/parse_numbers.h \
+ /usr/include/c++/13/bits/std_mutex.h \
+ /usr/include/c++/13/bits/unique_lock.h \
+ /home/ellen/install/include/vsg/core/Array.h \
+ /home/ellen/install/include/vsg/core/Data.h \
+ /home/ellen/install/include/vsg/core/Object.h /usr/include/c++/13/atomic \
+ /usr/include/c++/13/typeindex \
+ /home/ellen/install/include/vsg/core/ref_ptr.h \
+ /home/ellen/install/include/vsg/core/type_name.h \
+ /home/ellen/install/include/vsg/core/compare.h \
+ /usr/include/c++/13/cstring /usr/include/string.h /usr/include/strings.h \
+ /home/ellen/install/include/vsg/vk/vulkan.h /usr/include/vulkan/vulkan.h \
+ /usr/include/vulkan/vk_platform.h /usr/include/vulkan/vulkan_core.h \
+ /usr/include/vk_video/vulkan_video_codec_h264std.h \
+ /usr/include/vk_video/vulkan_video_codecs_common.h \
+ /usr/include/vk_video/vulkan_video_codec_h264std_encode.h \
+ /usr/include/vk_video/vulkan_video_codec_h264std.h \
+ /usr/include/vk_video/vulkan_video_codec_h265std.h \
+ /usr/include/vk_video/vulkan_video_codec_h265std_encode.h \
+ /usr/include/vk_video/vulkan_video_codec_h265std.h \
+ /usr/include/vk_video/vulkan_video_codec_h264std_decode.h \
+ /usr/include/vk_video/vulkan_video_codec_h265std_decode.h \
+ /home/ellen/install/include/vsg/maths/mat4.h \
+ /home/ellen/install/include/vsg/maths/plane.h \
+ /home/ellen/install/include/vsg/maths/sphere.h \
+ /home/ellen/install/include/vsg/maths/vec3.h \
+ /home/ellen/install/include/vsg/maths/vec2.h /usr/include/c++/13/cmath \
+ /usr/include/math.h /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+ /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
+ /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
+ /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
+ /usr/include/c++/13/bits/specfun.h /usr/include/c++/13/tr1/gamma.tcc \
+ /usr/include/c++/13/tr1/special_function_util.h \
+ /usr/include/c++/13/tr1/bessel_function.tcc \
+ /usr/include/c++/13/tr1/beta_function.tcc \
+ /usr/include/c++/13/tr1/ell_integral.tcc \
+ /usr/include/c++/13/tr1/exp_integral.tcc \
+ /usr/include/c++/13/tr1/hypergeometric.tcc \
+ /usr/include/c++/13/tr1/legendre_function.tcc \
+ /usr/include/c++/13/tr1/modified_bessel_func.tcc \
+ /usr/include/c++/13/tr1/poly_hermite.tcc \
+ /usr/include/c++/13/tr1/poly_laguerre.tcc \
+ /usr/include/c++/13/tr1/riemann_zeta.tcc \
+ /home/ellen/install/include/vsg/maths/vec4.h \
+ /home/ellen/install/include/vsg/io/Input.h \
+ /home/ellen/install/include/vsg/core/Version.h \
+ /home/ellen/install/include/vsg/maths/box.h \
+ /home/ellen/install/include/vsg/maths/mat3.h \
+ /home/ellen/install/include/vsg/maths/quat.h \
+ /home/ellen/install/include/vsg/io/FileSystem.h \
+ /home/ellen/install/include/vsg/core/contains.h \
+ /usr/include/c++/13/algorithm /usr/include/c++/13/bits/stl_algo.h \
+ /usr/include/c++/13/bits/algorithmfwd.h \
+ /usr/include/c++/13/bits/stl_heap.h \
+ /usr/include/c++/13/bits/uniform_int_dist.h \
+ /usr/include/c++/13/pstl/glue_algorithm_defs.h /usr/include/c++/13/set \
+ /usr/include/c++/13/bits/stl_set.h \
+ /usr/include/c++/13/bits/stl_multiset.h \
+ /home/ellen/install/include/vsg/io/Path.h \
+ /home/ellen/install/include/vsg/io/convert_utf.h \
+ /home/ellen/install/include/vsg/io/ObjectFactory.h \
+ /usr/include/c++/13/functional /usr/include/c++/13/bits/std_function.h \
+ /usr/include/c++/13/unordered_map \
+ /usr/include/c++/13/bits/unordered_map.h \
+ /usr/include/c++/13/bits/hashtable.h \
+ /usr/include/c++/13/bits/hashtable_policy.h \
+ /usr/include/c++/13/bits/enable_special_members.h \
+ /usr/include/c++/13/array /usr/include/c++/13/compare \
+ /home/ellen/install/include/vsg/io/Output.h \
+ /home/ellen/install/include/vsg/core/Array2D.h \
+ /home/ellen/install/include/vsg/core/Array3D.h \
+ /home/ellen/install/include/vsg/core/Auxiliary.h \
+ /home/ellen/install/include/vsg/core/ConstVisitor.h \
+ /home/ellen/install/include/vsg/core/Mask.h \
+ /home/ellen/install/include/vsg/core/Value.h \
+ /home/ellen/install/include/vsg/core/Exception.h \
+ /home/ellen/install/include/vsg/core/External.h \
+ /home/ellen/install/include/vsg/core/Inherit.h \
+ /home/ellen/install/include/vsg/app/RecordTraversal.h \
+ /home/ellen/install/include/vsg/core/Visitor.h \
+ /home/ellen/install/include/vsg/core/Objects.h \
+ /home/ellen/install/include/vsg/core/ScratchMemory.h \
+ /home/ellen/install/include/vsg/core/observer_ptr.h \
+ /home/ellen/install/include/vsg/core/visit.h \
+ /home/ellen/install/include/vsg/maths/clamp.h \
+ /home/ellen/install/include/vsg/maths/color.h \
+ /home/ellen/install/include/vsg/maths/common.h \
+ /home/ellen/install/include/vsg/maths/sample.h \
+ /home/ellen/install/include/vsg/state/Sampler.h \
+ /home/ellen/install/include/vsg/vk/Device.h \
+ /home/ellen/install/include/vsg/vk/DeviceExtensions.h \
+ /home/ellen/install/include/vsg/vk/Instance.h \
+ /home/ellen/install/include/vsg/vk/AllocationCallbacks.h \
+ /home/ellen/install/include/vsg/vk/InstanceExtensions.h \
+ /home/ellen/install/include/vsg/vk/DeviceFeatures.h \
+ /home/ellen/install/include/vsg/vk/PhysicalDevice.h \
+ /home/ellen/install/include/vsg/vk/Surface.h \
+ /home/ellen/install/include/vsg/vk/Queue.h \
+ /home/ellen/install/include/vsg/vk/vk_buffer.h \
+ /home/ellen/install/include/vsg/maths/transform.h \
+ /home/ellen/install/include/vsg/nodes/AbsoluteTransform.h \
+ /home/ellen/install/include/vsg/nodes/Transform.h \
+ /home/ellen/install/include/vsg/nodes/Group.h \
+ /home/ellen/install/include/vsg/nodes/Node.h \
+ /home/ellen/install/include/vsg/nodes/Bin.h \
+ /home/ellen/install/include/vsg/nodes/Compilable.h \
+ /home/ellen/install/include/vsg/nodes/CullGroup.h \
+ /home/ellen/install/include/vsg/nodes/CullNode.h \
+ /home/ellen/install/include/vsg/nodes/DepthSorted.h \
+ /home/ellen/install/include/vsg/nodes/Geometry.h \
+ /home/ellen/install/include/vsg/commands/Draw.h \
+ /home/ellen/install/include/vsg/vk/CommandBuffer.h \
+ /home/ellen/install/include/vsg/state/PipelineLayout.h \
+ /home/ellen/install/include/vsg/state/DescriptorSetLayout.h \
+ /home/ellen/install/include/vsg/vk/CommandPool.h \
+ /home/ellen/install/include/vsg/commands/Command.h \
+ /home/ellen/install/include/vsg/state/BufferInfo.h \
+ /home/ellen/install/include/vsg/state/Buffer.h \
+ /home/ellen/install/include/vsg/vk/DeviceMemory.h \
+ /home/ellen/install/include/vsg/nodes/InstrumentationNode.h \
+ /home/ellen/install/include/vsg/utils/Instrumentation.h \
+ /home/ellen/install/include/vsg/io/Logger.h \
+ /home/ellen/install/include/vsg/io/stream.h /usr/include/c++/13/sstream \
+ /usr/include/c++/13/bits/sstream.tcc /usr/include/c++/13/thread \
+ /usr/include/c++/13/bits/std_thread.h \
+ /usr/include/c++/13/bits/this_thread_sleep.h \
+ /home/ellen/install/include/vsg/nodes/LOD.h \
+ /home/ellen/install/include/vsg/nodes/Layer.h \
+ /home/ellen/install/include/vsg/nodes/MatrixTransform.h \
+ /home/ellen/install/include/vsg/nodes/PagedLOD.h \
+ /home/ellen/install/include/vsg/io/Options.h \
+ /home/ellen/install/include/vsg/state/StateCommand.h \
+ /home/ellen/install/include/vsg/vk/Semaphore.h \
+ /home/ellen/install/include/vsg/nodes/QuadGroup.h \
+ /home/ellen/install/include/vsg/nodes/RegionOfInterest.h \
+ /home/ellen/install/include/vsg/nodes/StateGroup.h \
+ /home/ellen/install/include/vsg/state/ArrayState.h \
+ /home/ellen/install/include/vsg/nodes/Switch.h \
+ /home/ellen/install/include/vsg/nodes/TileDatabase.h \
+ /home/ellen/install/include/vsg/app/EllipsoidModel.h \
+ /home/ellen/install/include/vsg/io/ReaderWriter.h \
+ /home/ellen/install/include/vsg/utils/ShaderSet.h \
+ /home/ellen/install/include/vsg/state/GraphicsPipeline.h \
+ /home/ellen/install/include/vsg/state/ShaderStage.h \
+ /home/ellen/install/include/vsg/state/ShaderModule.h \
+ /usr/include/c++/13/fstream /usr/include/c++/13/bits/codecvt.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
+ /usr/include/c++/13/bits/fstream.tcc \
+ /home/ellen/install/include/vsg/vk/RenderPass.h \
+ /home/ellen/install/include/vsg/nodes/VertexDraw.h \
+ /home/ellen/install/include/vsg/nodes/VertexIndexDraw.h \
+ /home/ellen/install/include/vsg/animation/Animation.h \
+ /home/ellen/install/include/vsg/animation/AnimationGroup.h \
+ /home/ellen/install/include/vsg/animation/AnimationManager.h \
+ /home/ellen/install/include/vsg/ui/FrameStamp.h \
+ /home/ellen/install/include/vsg/ui/UIEvent.h /usr/include/c++/13/chrono \
+ /home/ellen/install/include/vsg/animation/CameraAnimation.h \
+ /home/ellen/install/include/vsg/animation/TransformSampler.h \
+ /home/ellen/install/include/vsg/app/ViewMatrix.h \
+ /home/ellen/install/include/vsg/ui/KeyEvent.h \
+ /home/ellen/install/include/vsg/app/Window.h \
+ /home/ellen/install/include/vsg/app/WindowTraits.h \
+ /usr/include/c++/13/any /home/ellen/install/include/vsg/vk/Swapchain.h \
+ /home/ellen/install/include/vsg/state/ImageView.h \
+ /home/ellen/install/include/vsg/state/Image.h \
+ /home/ellen/install/include/vsg/vk/Fence.h \
+ /home/ellen/install/include/vsg/vk/Framebuffer.h \
+ /home/ellen/install/include/vsg/ui/WindowEvent.h \
+ /home/ellen/install/include/vsg/animation/FindAnimations.h \
+ /home/ellen/install/include/vsg/animation/Joint.h \
+ /home/ellen/install/include/vsg/animation/JointSampler.h \
+ /home/ellen/install/include/vsg/animation/MorphSampler.h \
+ /home/ellen/install/include/vsg/lighting/AmbientLight.h \
+ /home/ellen/install/include/vsg/lighting/Light.h \
+ /home/ellen/install/include/vsg/lighting/ShadowSettings.h \
+ /home/ellen/install/include/vsg/lighting/DirectionalLight.h \
+ /home/ellen/install/include/vsg/lighting/HardShadows.h \
+ /home/ellen/install/include/vsg/lighting/PercentageCloserSoftShadows.h \
+ /home/ellen/install/include/vsg/lighting/PointLight.h \
+ /home/ellen/install/include/vsg/lighting/SoftShadows.h \
+ /home/ellen/install/include/vsg/lighting/SpotLight.h \
+ /home/ellen/install/include/vsg/commands/BeginQuery.h \
+ /home/ellen/install/include/vsg/state/QueryPool.h \
+ /home/ellen/install/include/vsg/vk/Context.h /usr/include/c++/13/deque \
+ /usr/include/c++/13/bits/stl_deque.h /usr/include/c++/13/bits/deque.tcc \
+ /home/ellen/install/include/vsg/commands/CopyAndReleaseBuffer.h \
+ /home/ellen/install/include/vsg/vk/MemoryBufferPools.h \
+ /home/ellen/install/include/vsg/vk/ResourceRequirements.h \
+ /home/ellen/install/include/vsg/state/Descriptor.h \
+ /home/ellen/install/include/vsg/state/ImageInfo.h \
+ /home/ellen/install/include/vsg/state/ResourceHints.h \
+ /home/ellen/install/include/vsg/vk/DescriptorPool.h \
+ /home/ellen/install/include/vsg/state/DescriptorSet.h \
+ /usr/include/c++/13/stack /usr/include/c++/13/bits/stl_stack.h \
+ /home/ellen/install/include/vsg/commands/CopyAndReleaseImage.h \
+ /home/ellen/install/include/vsg/utils/ShaderCompiler.h \
+ /home/ellen/install/include/vsg/commands/BindIndexBuffer.h \
+ /home/ellen/install/include/vsg/commands/BindVertexBuffers.h \
+ /home/ellen/install/include/vsg/commands/BlitImage.h \
+ /home/ellen/install/include/vsg/commands/ClearAttachments.h \
+ /home/ellen/install/include/vsg/commands/ClearImage.h \
+ /home/ellen/install/include/vsg/commands/Commands.h \
+ /home/ellen/install/include/vsg/commands/CopyImage.h \
+ /home/ellen/install/include/vsg/commands/CopyImageToBuffer.h \
+ /home/ellen/install/include/vsg/commands/CopyImageViewToWindow.h \
+ /home/ellen/install/include/vsg/commands/CopyQueryPoolResults.h \
+ /home/ellen/install/include/vsg/commands/Dispatch.h \
+ /home/ellen/install/include/vsg/commands/DrawIndexed.h \
+ /home/ellen/install/include/vsg/commands/DrawIndexedIndirect.h \
+ /home/ellen/install/include/vsg/commands/DrawIndirect.h \
+ /home/ellen/install/include/vsg/commands/DrawIndirectCommand.h \
+ /home/ellen/install/include/vsg/commands/EndQuery.h \
+ /home/ellen/install/include/vsg/commands/Event.h \
+ /home/ellen/install/include/vsg/commands/PipelineBarrier.h \
+ /home/ellen/install/include/vsg/commands/ExecuteCommands.h \
+ /home/ellen/install/include/vsg/app/SecondaryCommandGraph.h \
+ /home/ellen/install/include/vsg/app/CommandGraph.h \
+ /home/ellen/install/include/vsg/app/Camera.h \
+ /home/ellen/install/include/vsg/app/ProjectionMatrix.h \
+ /home/ellen/install/include/vsg/state/ViewportState.h \
+ /home/ellen/install/include/vsg/threading/Latch.h \
+ /usr/include/c++/13/condition_variable \
+ /home/ellen/install/include/vsg/commands/NextSubPass.h \
+ /home/ellen/install/include/vsg/commands/ResetQueryPool.h \
+ /home/ellen/install/include/vsg/commands/ResolveImage.h \
+ /home/ellen/install/include/vsg/commands/SetDepthBias.h \
+ /home/ellen/install/include/vsg/commands/SetLineWidth.h \
+ /home/ellen/install/include/vsg/commands/SetPrimitiveTopology.h \
+ /home/ellen/install/include/vsg/commands/SetScissor.h \
+ /home/ellen/install/include/vsg/commands/SetViewport.h \
+ /home/ellen/install/include/vsg/commands/WriteTimestamp.h \
+ /home/ellen/install/include/vsg/state/BindDescriptorSet.h \
+ /home/ellen/install/include/vsg/state/BufferView.h \
+ /home/ellen/install/include/vsg/state/ColorBlendState.h \
+ /home/ellen/install/include/vsg/state/ComputePipeline.h \
+ /home/ellen/install/include/vsg/state/DepthStencilState.h \
+ /home/ellen/install/include/vsg/state/DescriptorBuffer.h \
+ /home/ellen/install/include/vsg/state/DescriptorImage.h \
+ /home/ellen/install/include/vsg/state/DescriptorTexelBufferView.h \
+ /home/ellen/install/include/vsg/state/DynamicState.h \
+ /home/ellen/install/include/vsg/state/InputAssemblyState.h \
+ /home/ellen/install/include/vsg/state/MultisampleState.h \
+ /home/ellen/install/include/vsg/state/PushConstants.h \
+ /home/ellen/install/include/vsg/state/RasterizationState.h \
+ /home/ellen/install/include/vsg/state/StateSwitch.h \
+ /home/ellen/install/include/vsg/state/TessellationState.h \
+ /home/ellen/install/include/vsg/state/VertexInputState.h \
+ /home/ellen/install/include/vsg/state/ViewDependentState.h \
+ /home/ellen/install/include/vsg/app/RenderGraph.h \
+ /home/ellen/install/include/vsg/app/WindowResizeHandler.h \
+ /home/ellen/install/include/vsg/state/material.h \
+ /home/ellen/install/include/vsg/threading/ActivityStatus.h \
+ /home/ellen/install/include/vsg/threading/Affinity.h \
+ /home/ellen/install/include/vsg/threading/Barrier.h \
+ /home/ellen/install/include/vsg/threading/FrameBlock.h \
+ /home/ellen/install/include/vsg/ui/ApplicationEvent.h \
+ /home/ellen/install/include/vsg/threading/OperationQueue.h \
+ /home/ellen/install/include/vsg/threading/OperationThreads.h \
+ /home/ellen/install/include/vsg/threading/atomics.h \
+ /home/ellen/install/include/vsg/ui/CollectEvents.h \
+ /home/ellen/install/include/vsg/ui/PointerEvent.h \
+ /home/ellen/install/include/vsg/ui/ScrollWheelEvent.h \
+ /home/ellen/install/include/vsg/ui/Keyboard.h \
+ /home/ellen/install/include/vsg/ui/PlayEvents.h \
+ /home/ellen/install/include/vsg/ui/PrintEvents.h \
+ /home/ellen/install/include/vsg/ui/RecordEvents.h \
+ /home/ellen/install/include/vsg/ui/ShiftEventTime.h \
+ /home/ellen/install/include/vsg/ui/TouchEvent.h \
+ /home/ellen/install/include/vsg/app/CloseHandler.h \
+ /home/ellen/install/include/vsg/app/Viewer.h \
+ /home/ellen/install/include/vsg/app/CompileManager.h \
+ /home/ellen/install/include/vsg/app/CompileTraversal.h \
+ /home/ellen/install/include/vsg/app/Presentation.h \
+ /home/ellen/install/include/vsg/app/RecordAndSubmitTask.h \
+ /home/ellen/install/include/vsg/app/TransferTask.h \
+ /home/ellen/install/include/vsg/io/DatabasePager.h \
+ /home/ellen/install/include/vsg/app/UpdateOperations.h \
+ /home/ellen/install/include/vsg/app/Trackball.h \
+ /home/ellen/install/include/vsg/app/View.h \
+ /home/ellen/install/include/vsg/app/WindowAdapter.h \
+ /home/ellen/install/include/vsg/vk/State.h \
+ /home/ellen/install/include/vsg/vk/SubmitCommands.h \
+ /home/ellen/install/include/vsg/io/AsciiInput.h \
+ /home/ellen/install/include/vsg/io/AsciiOutput.h \
+ /home/ellen/install/include/vsg/io/BinaryInput.h \
+ /home/ellen/install/include/vsg/io/BinaryOutput.h \
+ /home/ellen/install/include/vsg/io/VSG.h \
+ /home/ellen/install/include/vsg/io/glsl.h \
+ /home/ellen/install/include/vsg/io/mem_stream.h \
+ /home/ellen/install/include/vsg/io/read.h \
+ /home/ellen/install/include/vsg/io/read_line.h \
+ /home/ellen/install/include/vsg/io/spirv.h \
+ /home/ellen/install/include/vsg/io/tile.h \
+ /home/ellen/install/include/vsg/utils/GraphicsPipelineConfigurator.h \
+ /home/ellen/install/include/vsg/utils/SharedObjects.h \
+ /home/ellen/install/include/vsg/io/txt.h \
+ /home/ellen/install/include/vsg/io/write.h \
+ /home/ellen/install/include/vsg/utils/Builder.h \
+ /home/ellen/install/include/vsg/utils/CommandLine.h \
+ /home/ellen/install/include/vsg/utils/ComputeBounds.h \
+ /home/ellen/install/include/vsg/utils/FindDynamicObjects.h \
+ /home/ellen/install/include/vsg/utils/GpuAnnotation.h \
+ /home/ellen/install/include/vsg/utils/Intersector.h \
+ /home/ellen/install/include/vsg/utils/LineSegmentIntersector.h \
+ /home/ellen/install/include/vsg/utils/LoadPagedLOD.h \
+ /home/ellen/install/include/vsg/utils/Profiler.h \
+ /home/ellen/install/include/vsg/utils/PropagateDynamicObjects.h \
+ /home/ellen/install/include/vsg/text/CpuLayoutTechnique.h \
+ /home/ellen/install/include/vsg/text/Font.h \
+ /home/ellen/install/include/vsg/text/GlyphMetrics.h \
+ /home/ellen/install/include/vsg/text/TextLayout.h \
+ /home/ellen/install/include/vsg/text/TextTechnique.h \
+ /home/ellen/install/include/vsg/text/GpuLayoutTechnique.h \
+ /home/ellen/install/include/vsg/text/StandardLayout.h \
+ /home/ellen/install/include/vsg/text/Text.h \
+ /home/ellen/install/include/vsg/text/TextGroup.h \
+ /home/ellen/install/include/vsg/raytracing/AccelerationGeometry.h \
+ /home/ellen/install/include/vsg/raytracing/AccelerationStructure.h \
+ /home/ellen/install/include/vsg/raytracing/BottomLevelAccelerationStructure.h \
+ /home/ellen/install/include/vsg/raytracing/BuildAccelerationStructureTraversal.h \
+ /home/ellen/install/include/vsg/raytracing/TopLevelAccelerationStructure.h \
+ /home/ellen/install/include/vsg/raytracing/DescriptorAccelerationStructure.h \
+ /home/ellen/install/include/vsg/raytracing/RayTracingPipeline.h \
+ /home/ellen/install/include/vsg/raytracing/RayTracingShaderGroup.h \
+ /home/ellen/install/include/vsg/raytracing/TraceRays.h \
+ /home/ellen/install/include/vsg/meshshaders/DrawMeshTasks.h \
+ /home/ellen/install/include/vsg/meshshaders/DrawMeshTasksIndirect.h \
+ /home/ellen/install/include/vsg/meshshaders/DrawMeshTasksIndirectCount.h \
+ /home/ellen/install/include/vsgXchange/all.h \
+ /home/ellen/install/include/vsgXchange/Version.h \
+ /home/ellen/install/include/vsgXchange/Export.h
