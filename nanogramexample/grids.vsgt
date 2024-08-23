@@ -10,8 +10,8 @@ Root id=1 vsg::Objects
     width 4
     height 4
     storage id=0
-    data 1 1 1 1 1 1 1 1 2 2 2 2
-     1 1 1 1
+    data 1 1 1 1 1 1 1 2 2 2 2 2
+     1 1 1 2
   }
   vsg::Object id=0
 }
