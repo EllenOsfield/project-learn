@@ -135,40 +135,75 @@ public:
 std::vector<int> computeRowCounts(Grid& grid, int row)
 {
     std::vector<int> nums;
-    int mus = 0;
-    int ums = 0;
-    int msu = 0;
+    // int mus = 0;
+    int block = 0;
+    int blackblockcounter = 0;
     for(uint32_t column=0; column<grid.width(); ++column)
     {
         if (grid.at(column,row) == 1)
         {
-            mus += 1,
-            ums += 1;
+           //  mus += 1,
+            block += 1;
         }
 
-        if (ums == 1)
-            msu += 1;
+        if (block == 1)
+            blackblockcounter += 1;
         else
-            if (msu != 0)
+            if (blackblockcounter != 0)
             {
-                nums.push_back(msu);
-                //std::cout<<"num "<<num<<std::endl;
-                msu = 0;
+                nums.push_back(blackblockcounter);
+                blackblockcounter = 0;
             }
             else
-                msu = 0;
+                blackblockcounter = 0;
 
-        // std::cout<<"column "<<ctimes<<" sum = "<<ums<<" and current run  = "<<msu<<std::endl;
-        ums = 0;
+        block = 0;
     }
 
-    if (msu != 0)
+    if (blackblockcounter != 0)
     {
-        nums.push_back(msu);
+        nums.push_back(blackblockcounter);
     }
 
     return nums;
 }
+
+std::vector<int> computeColumnCounts(Grid& grid, int column)
+{
+    std::vector<int> numbs;
+    // int mus = 0;
+    int block = 0;
+    int blackblockcounter = 0;
+    for(uint32_t row=0; row<grid.width(); ++row)
+    {
+        if (grid.at(column,row) == 1)
+        {
+           //  mus += 1,
+            block += 1;
+        }
+
+        if (block == 1)
+            blackblockcounter += 1;
+        else
+            if (blackblockcounter != 0)
+            {
+                numbs.push_back(blackblockcounter);
+                blackblockcounter = 0;
+            }
+            else
+                blackblockcounter = 0;
+
+        block = 0;
+    }
+
+    if (blackblockcounter != 0)
+    {
+        numbs.push_back(blackblockcounter);
+    }
+
+    return numbs;
+}
+
 
 int counter(Grid& grid)
 {
@@ -186,6 +221,19 @@ int counter(Grid& grid)
 
         std::cout<<"row "<<row<<" [ "<< str.str()<<"]"<<std::endl;
 
+    }
+
+    for(uint32_t column=0; column<grid.width(); ++column)
+    {
+        auto numbs = computeColumnCounts(grid, column);
+
+        std::stringstream str;
+        for(int nc : numbs)
+        {
+            str<<nc<<" ";
+        }
+
+        std::cout<<"column "<< column<<" [ "<<str.str()<<"]"<<std::endl;
     }
     std::cout<<"total sum ="<<sum<<std::endl;
 
