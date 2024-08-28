@@ -1,3 +1,4 @@
+#include <cerrno>
 #include <iostream>
 #include <vsg/all.h>
 #include <vsgXchange/all.h>
@@ -165,6 +166,8 @@ std::vector<int> computeRowCounts(Grid& grid, int row)
         nums.push_back(blackblockcounter);
     }
 
+
+
     return nums;
 }
 
@@ -220,7 +223,6 @@ int counter(Grid& grid)
         }
 
         std::cout<<"row "<<row<<" [ "<< str.str()<<"]"<<std::endl;
-
     }
 
 
@@ -301,6 +303,22 @@ vsg::ref_ptr<vsg::Group> createScene(vsg::ref_ptr<Grid> grid, float spacing, vsg
 
         for(uint32_t row=0; row<grid->height(); ++row)
         {
+            auto nums = computeRowCounts(*grid, row);
+
+            std::stringstream label;
+
+            if (nums.size() == 0 )
+            {
+                label<<"0";
+            }
+            else
+            {
+                for(int n : nums)
+                {
+                    label<<n<<" ";
+                }
+            }
+
             auto layout = vsg::StandardLayout::create();
             layout->glyphLayout = vsg::StandardLayout::LEFT_TO_RIGHT_LAYOUT;
             layout->position = position;
@@ -311,7 +329,7 @@ vsg::ref_ptr<vsg::Group> createScene(vsg::ref_ptr<Grid> grid, float spacing, vsg
             layout->color = vsg::vec4(0.0, 1.0, 0.0, 1.0);\
 
             auto text = vsg::Text::create();
-            text->text = vsg::stringValue::create("12 30");
+            text->text = vsg::stringValue::create(label.str());
             text->font = font;
             text->layout = layout;
             text->setup(0, options);
@@ -320,10 +338,27 @@ vsg::ref_ptr<vsg::Group> createScene(vsg::ref_ptr<Grid> grid, float spacing, vsg
             position.y += spacing;
         }
 
-        position = origin + vsg::vec3(0.0f, (static_cast<float>(grid->height()) -0.5) * spacing, 0.0f);
+        position = origin + vsg::vec3(0.0f, (static_cast<float>(grid->height())-0.5f) * spacing, 0.0f);
 
         for(uint32_t column=0; column<grid->height(); ++column)
         {
+            auto numbs = computeColumnCounts(*grid, column);
+
+            std::stringstream label;
+
+            if (numbs.size() == 0 )
+            {
+                label<<"0";
+            }
+            else
+            {
+                for(auto itr = numbs.rbegin(); itr != numbs.rend(); ++itr)
+                {
+                    int n = *itr;
+                    label<<n;
+                }
+            }
+
             auto layout = vsg::StandardLayout::create();
             layout->glyphLayout = vsg::StandardLayout::VERTICAL_LAYOUT;
             layout->position = position;
@@ -334,7 +369,7 @@ vsg::ref_ptr<vsg::Group> createScene(vsg::ref_ptr<Grid> grid, float spacing, vsg
             layout->color = vsg::vec4(0.0, 1.0, 0.0, 1.0);\
 
             auto text = vsg::Text::create();
-            text->text = vsg::stringValue::create("12");
+            text->text = vsg::stringValue::create(label.str());
             text->font = font;
             text->layout = layout;
             text->setup(0, options);
