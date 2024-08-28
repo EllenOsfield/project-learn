@@ -245,6 +245,20 @@ thirdattempt/fast:
 	cd /home/ellen/dev/project-learn && $(MAKE) $(MAKESILENT) -f nanogramexample/CMakeFiles/thirdattempt.dir/build.make nanogramexample/CMakeFiles/thirdattempt.dir/build
 .PHONY : thirdattempt/fast
 
+# Convenience name for target.
+nanogramexample/CMakeFiles/attemptingtext.dir/rule:
+	cd /home/ellen/dev/project-learn && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 nanogramexample/CMakeFiles/attemptingtext.dir/rule
+.PHONY : nanogramexample/CMakeFiles/attemptingtext.dir/rule
+
+# Convenience name for target.
+attemptingtext: nanogramexample/CMakeFiles/attemptingtext.dir/rule
+.PHONY : attemptingtext
+
+# fast build rule for target.
+attemptingtext/fast:
+	cd /home/ellen/dev/project-learn && $(MAKE) $(MAKESILENT) -f nanogramexample/CMakeFiles/attemptingtext.dir/build.make nanogramexample/CMakeFiles/attemptingtext.dir/build
+.PHONY : attemptingtext/fast
+
 array2d.o: array2d.cpp.o
 .PHONY : array2d.o
 
@@ -268,6 +282,30 @@ array2d.s: array2d.cpp.s
 array2d.cpp.s:
 	cd /home/ellen/dev/project-learn && $(MAKE) $(MAKESILENT) -f nanogramexample/CMakeFiles/array2d.dir/build.make nanogramexample/CMakeFiles/array2d.dir/array2d.cpp.s
 .PHONY : array2d.cpp.s
+
+attemptingtext.o: attemptingtext.cpp.o
+.PHONY : attemptingtext.o
+
+# target to build an object file
+attemptingtext.cpp.o:
+	cd /home/ellen/dev/project-learn && $(MAKE) $(MAKESILENT) -f nanogramexample/CMakeFiles/attemptingtext.dir/build.make nanogramexample/CMakeFiles/attemptingtext.dir/attemptingtext.cpp.o
+.PHONY : attemptingtext.cpp.o
+
+attemptingtext.i: attemptingtext.cpp.i
+.PHONY : attemptingtext.i
+
+# target to preprocess a source file
+attemptingtext.cpp.i:
+	cd /home/ellen/dev/project-learn && $(MAKE) $(MAKESILENT) -f nanogramexample/CMakeFiles/attemptingtext.dir/build.make nanogramexample/CMakeFiles/attemptingtext.dir/attemptingtext.cpp.i
+.PHONY : attemptingtext.cpp.i
+
+attemptingtext.s: attemptingtext.cpp.s
+.PHONY : attemptingtext.s
+
+# target to generate assembly for a file
+attemptingtext.cpp.s:
+	cd /home/ellen/dev/project-learn && $(MAKE) $(MAKESILENT) -f nanogramexample/CMakeFiles/attemptingtext.dir/build.make nanogramexample/CMakeFiles/attemptingtext.dir/attemptingtext.cpp.s
+.PHONY : attemptingtext.cpp.s
 
 cppgrid.o: cppgrid.cpp.o
 .PHONY : cppgrid.o
@@ -402,6 +440,7 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... array2d"
+	@echo "... attemptingtext"
 	@echo "... cppgrid"
 	@echo "... firstattempt"
 	@echo "... nanogram"
@@ -410,6 +449,9 @@ help:
 	@echo "... array2d.o"
 	@echo "... array2d.i"
 	@echo "... array2d.s"
+	@echo "... attemptingtext.o"
+	@echo "... attemptingtext.i"
+	@echo "... attemptingtext.s"
 	@echo "... cppgrid.o"
 	@echo "... cppgrid.i"
 	@echo "... cppgrid.s"

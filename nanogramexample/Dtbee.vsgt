@@ -2,7 +2,7 @@
 Root id=1 vsg::Objects
 {
   userObjects 0
-  children 2
+  children 1
   vsg::Object id=2 vsg::intArray2D
   {
     userObjects 0
@@ -10,8 +10,7 @@ Root id=1 vsg::Objects
     width 4
     height 4
     storage id=0
-    data 0 0 1 1 0 0 2 2 1 1 0 2
-     0 0 1 2
+    data 0 0 0 0 0 0 0 0 0 0 0 0
+     0 0 0 0
   }
-  vsg::Object id=0
 }

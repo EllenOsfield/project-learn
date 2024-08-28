@@ -223,6 +223,8 @@ int counter(Grid& grid)
 
     }
 
+
+
     for(uint32_t column=0; column<grid.width(); ++column)
     {
         auto numbs = computeColumnCounts(grid, column);
@@ -237,12 +239,14 @@ int counter(Grid& grid)
     }
     std::cout<<"total sum ="<<sum<<std::endl;
 
+
+
     return sum;
 }
 
 
 
-vsg::ref_ptr<vsg::Group> createScene(vsg::ref_ptr<Grid> grid, float spacing)
+vsg::ref_ptr<vsg::Group> createScene(vsg::ref_ptr<Grid> grid, float spacing, vsg::ref_ptr<vsg::Options> options)
 {
     auto scene = vsg::Group::create();
 
@@ -250,8 +254,9 @@ vsg::ref_ptr<vsg::Group> createScene(vsg::ref_ptr<Grid> grid, float spacing)
     vsg::GeometryInfo geomInfo;
     vsg::StateInfo stateInfo;
 
-    geomInfo.position.x = 0.0;
-    geomInfo.position.y = 0.0;
+    vsg::vec3 origin(0.0f, 0.0f, 0.0f);
+
+    geomInfo.position = origin;
 
     scene->setObject("grid", grid);
 
@@ -286,12 +291,74 @@ vsg::ref_ptr<vsg::Group> createScene(vsg::ref_ptr<Grid> grid, float spacing)
 
     }
 
+    // create labels
+    {
+        vsg::Path font_filename = "fonts/times.vsgb";
+        auto font = vsg::read_cast<vsg::Font>(font_filename, options);
+
+        vsg::vec3 position = origin;
+        position.x -= 1.0f;
+
+        for(uint32_t row=0; row<grid->height(); ++row)
+        {
+            auto layout = vsg::StandardLayout::create();
+            layout->glyphLayout = vsg::StandardLayout::LEFT_TO_RIGHT_LAYOUT;
+            layout->position = position;
+            layout->horizontal = vsg::vec3(0.7, 0.0, 0.0);
+            layout->vertical = vsg::vec3(0.0, 0.7, 0.0);
+            layout->horizontalAlignment = vsg::StandardLayout::RIGHT_ALIGNMENT;
+            layout->verticalAlignment = vsg::StandardLayout::CENTER_ALIGNMENT;
+            layout->color = vsg::vec4(0.0, 1.0, 0.0, 1.0);\
+
+            auto text = vsg::Text::create();
+            text->text = vsg::stringValue::create("12 30");
+            text->font = font;
+            text->layout = layout;
+            text->setup(0, options);
+            scene->addChild(text);
+
+            position.y += spacing;
+        }
+
+        position = origin + vsg::vec3(0.0f, (static_cast<float>(grid->height()) -0.5) * spacing, 0.0f);
+
+        for(uint32_t column=0; column<grid->height(); ++column)
+        {
+            auto layout = vsg::StandardLayout::create();
+            layout->glyphLayout = vsg::StandardLayout::VERTICAL_LAYOUT;
+            layout->position = position;
+            layout->horizontal = vsg::vec3(0.7, 0.0, 0.0);
+            layout->vertical = vsg::vec3(0.0, 0.7, 0.0);
+            layout->horizontalAlignment = vsg::StandardLayout::CENTER_ALIGNMENT;
+            layout->verticalAlignment = vsg::StandardLayout::BOTTOM_ALIGNMENT;
+            layout->color = vsg::vec4(0.0, 1.0, 0.0, 1.0);\
+
+            auto text = vsg::Text::create();
+            text->text = vsg::stringValue::create("12");
+            text->font = font;
+            text->layout = layout;
+            text->setup(0, options);
+            scene->addChild(text);
+
+            position.x += spacing;
+        }
+
+
+    }
+
     return scene;
 }
 
 int main(int argc, char** argv)
 {
     vsg::CommandLine arguments(&argc, argv);
+
+    auto options = vsg::Options::create();
+    options->paths = vsg::getEnvPaths("VSG_FILE_PATH");
+
+    // add vsgXchange's support for reading and writing 3rd party file formats
+    options->add(vsgXchange::all::create());
+
 
     auto dimensions = arguments.value(vsg::uivec2(4,4), "-s");
     auto gridsFilename = arguments.value(vsg::Path("grids.vsgt"), "--grids");
@@ -326,7 +393,7 @@ int main(int argc, char** argv)
     print(*grid);
 
     float spacing = 1.1;
-    auto scene = createScene(grid, spacing);
+    auto scene = createScene(grid, spacing, options);
 
     auto viewer = vsg::Viewer::create();
 
@@ -356,7 +423,7 @@ int main(int argc, char** argv)
     viewer->addEventHandler(vsg::CloseHandler::create(viewer));
 
     // add a trackball event handler to control the camera view using the mouse
-    // viewer->addEventHandler(vsg::Trackball::create(camera));
+    viewer->addEventHandler(vsg::Trackball::create(camera));
 
     auto intersectionHandler = IntersectionHandler::create(camera, scene);
     viewer->addEventHandler(intersectionHandler);
@@ -366,6 +433,8 @@ int main(int argc, char** argv)
 
     // compile all the Vulkan objects and transfer data required to render the scene
     viewer->compile();
+
+
 
 //
 // Section 3 : execute the frame loop
@@ -390,6 +459,7 @@ int main(int argc, char** argv)
     scene-> accept(ug);
 
     count = counter(*grid);
+
 
     if (gridsFilename)
     {

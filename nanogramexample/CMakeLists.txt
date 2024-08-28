@@ -22,3 +22,15 @@ target_link_libraries(thirdattempt vsg::vsg vsgXchange::vsgXchange)
 install(TARGETS thirdattempt RUNTIME DESTINATION bin)
 
 
+add_executable(attemptingtext "attemptingtext.cpp")
+
+target_link_libraries(attemptingtext vsg::vsg)
+
+if (vsgXchange_FOUND)
+    target_compile_definitions(attemptingtext PRIVATE vsgXchange_FOUND)
+    target_link_libraries(attemptingtext vsgXchange::vsgXchange)
+endif()
+
+install(TARGETS attemptingtext RUNTIME DESTINATION bin)
+
+
