@@ -83,15 +83,23 @@ public:
             {
                 vsg::uivec2 position;
                 uint32_t index;
-                if (node->getValue("position", position) && node->getValue("index", index))
+                uint32_t target;
+                if (node->getValue("position", position) && node->getValue("index", index)  && node->getValue("target", target))
                 {
-                    std::cout<<": position = {"<<position<<"} index = "<<index;
+                    std::cout<<": position = {"<<position<<"} index = "<<index<<", target = "<<target;
                 }
 
                 // update index to next child
                 index = (index + 1) % sw->children.size();
                 sw->setValue("index", index);
 
+               // if (index==target) std::cout<<", matching target";
+
+                bool matching = target == 1 && index ==1;
+                if (matching)
+                {
+                    std::cout<<" matching target";
+                }
                 sw->setSingleChildOn(index);
             }
         }
@@ -214,39 +222,15 @@ int counter(Grid& grid)
 
     for(uint32_t row=0; row<grid.height(); ++row)
     {
-        auto nums = computeRowCounts(grid, row);
-
-        std::stringstream str;
-        for(int n : nums)
+        for(uint32_t column=0; column<grid.width(); ++column)
         {
-            str<<n<<" ";
+            if (grid(column, row)==1) ++sum;
         }
-
-        std::cout<<"row "<<row<<" [ "<< str.str()<<"]"<<std::endl;
-    }
-
-
-
-    for(uint32_t column=0; column<grid.width(); ++column)
-    {
-        auto numbs = computeColumnCounts(grid, column);
-
-        std::stringstream str;
-        for(int nc : numbs)
-        {
-            str<<nc<<" ";
-        }
-
-        std::cout<<"column "<< column<<" [ "<<str.str()<<"]"<<std::endl;
     }
     std::cout<<"total sum ="<<sum<<std::endl;
 
-
-
     return sum;
 }
-
-
 
 vsg::ref_ptr<vsg::Group> createScene(vsg::ref_ptr<Grid> grid, float spacing, vsg::ref_ptr<vsg::Options> options, bool editingGame )
 {
@@ -270,9 +254,11 @@ vsg::ref_ptr<vsg::Group> createScene(vsg::ref_ptr<Grid> grid, float spacing, vsg
             auto sw = vsg::Switch::create();
             scene->addChild(sw);
 
-            uint32_t index = editingGame ? grid->at(column,row) : 0;
+            uint32_t target = grid->at(column,row);
+            uint32_t index = editingGame ? target : 0;
 
             sw->setValue("position", vsg::uivec2(column, row));
+            sw->setValue("target", target);
             sw->setValue("index", index);
 
             geomInfo.color.set(1.0f, 0.0f, 0.0f, 1.0f);;
