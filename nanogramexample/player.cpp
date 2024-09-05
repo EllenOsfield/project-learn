@@ -37,11 +37,16 @@ public:
     vsg::ref_ptr<vsg::Group> scenegraph;
     double scale = 1.0;
     bool verbose = true;
+    int numCorrect = 0;
+    int numWrong = 0;
+    int sum = 0;
 
-    IntersectionHandler(vsg::ref_ptr<vsg::Camera> in_camera, vsg::ref_ptr<vsg::Group> in_scenegraph) :
+    IntersectionHandler(vsg::ref_ptr<vsg::Camera> in_camera, vsg::ref_ptr<vsg::Group> in_scenegraph, int in_sum) :
         camera(in_camera),
-        scenegraph(in_scenegraph)
+        scenegraph(in_scenegraph),
+        sum(in_sum)
     {
+
     }
 
     void apply(vsg::KeyPressEvent& keyPress) override
@@ -67,16 +72,12 @@ public:
 
         if (intersector->intersections.empty()) return;
 
-        if (verbose) std::cout << "intersection(" << pointerEvent.x << ", " << pointerEvent.y << ") " << intersector->intersections.size() << ") ";
-
         // sort the intersections front to back
         std::sort(intersector->intersections.begin(), intersector->intersections.end(), [](auto& lhs, auto& rhs) { return lhs->ratio < rhs->ratio; });
 
         auto& intersection = intersector->intersections.front();
         for (auto& node : intersection->nodePath)
         {
-            std::cout << ", " << node->className();
-
             auto const_sw = node->cast<vsg::Switch>();
             auto sw = const_cast<vsg::Switch*>(const_sw);
             if (sw)
@@ -84,10 +85,12 @@ public:
                 vsg::uivec2 position;
                 uint32_t index;
                 uint32_t target;
-                if (node->getValue("position", position) && node->getValue("index", index)  && node->getValue("target", target))
-                {
-                    std::cout<<": position = {"<<position<<"} index = "<<index<<", target = "<<target;
-                }
+                node->getValue("position", position);
+                node->getValue("index", index);
+                node->getValue("target", target);
+
+                bool previousMatching = target == 1 && index == 1;
+                bool previousWrong = target != 1 && index == 1;
 
                 // update index to next child
                 index = (index + 1) % sw->children.size();
@@ -95,16 +98,29 @@ public:
 
                // if (index==target) std::cout<<", matching target";
 
-                bool matching = target == 1 && index ==1;
-                if (matching)
-                {
-                    std::cout<<" matching target";
-                }
+                bool newMatching = target == 1 && index == 1;
+                bool newWrong = target != 1 && index == 1;
+
+#if 1
+                numCorrect += (previousMatching ? -1 : 0) + (newMatching ? +1 : 0);
+                numWrong += (previousWrong ? -1 : 0) + (newWrong ? +1 : 0);
+#else
+                if (newMatching && !previousMatching) ++numCorrect;
+                else if (!newMatching && previousMatching) --numCorrect;
+
+                if (newWrong && !previousWrong) ++numofwrong;
+                else if (!newWrong && previousWrong) --numofwrong;
+
+#endif
                 sw->setSingleChildOn(index);
+
+                if (numCorrect==sum && numWrong==0)
+                {
+                    std::cout<<"Well done, you are not a Monica!"<<std::endl;
+
+                }
             }
         }
-
-        std::cout<<std::endl;
     }
 
 protected:
@@ -301,7 +317,7 @@ vsg::ref_ptr<vsg::Group> createScene(vsg::ref_ptr<Grid> grid, float spacing, vsg
             {
                 for(int n : nums)
                 {
-                    label<<n<<" ";
+                    label<<n<<"  ";
                 }
             }
 
@@ -324,47 +340,39 @@ vsg::ref_ptr<vsg::Group> createScene(vsg::ref_ptr<Grid> grid, float spacing, vsg
             position.y += spacing;
         }
 
-        position = origin + vsg::vec3(0.0f, (static_cast<float>(grid->height())-0.5f) * spacing, 0.0f);
+        position = origin + vsg::vec3(0.0f, (static_cast<float>(grid->height())-0.25f) * spacing, 0.0f);
 
         for(uint32_t column=0; column<grid->height(); ++column)
         {
             auto numbs = computeColumnCounts(*grid, column);
 
-            std::stringstream label;
+            vsg::vec3 cursor = position;
 
-            if (numbs.size() == 0 )
+            if (numbs.empty()) numbs.push_back(0);
+
+            for(auto n : numbs)
             {
-                label<<"0";
-            }
-            else
-            {
-                for(auto itr = numbs.rbegin(); itr != numbs.rend(); ++itr)
-                {
-                    int n = *itr;
-                    label<<n;
-                }
-            }
+                auto layout = vsg::StandardLayout::create();
+                layout->glyphLayout = vsg::StandardLayout::LEFT_TO_RIGHT_LAYOUT;
+                layout->position = cursor;
+                layout->horizontal = vsg::vec3(0.7, 0.0, 0.0);
+                layout->vertical = vsg::vec3(0.0, 0.7, 0.0);
+                layout->horizontalAlignment = vsg::StandardLayout::CENTER_ALIGNMENT;
+                layout->verticalAlignment = vsg::StandardLayout::BOTTOM_ALIGNMENT;
+                layout->color = vsg::vec4(0.0, 1.0, 0.0, 1.0);
 
-            auto layout = vsg::StandardLayout::create();
-            layout->glyphLayout = vsg::StandardLayout::VERTICAL_LAYOUT;
-            layout->position = position;
-            layout->horizontal = vsg::vec3(0.7, 0.0, 0.0);
-            layout->vertical = vsg::vec3(0.0, 0.7, 0.0);
-            layout->horizontalAlignment = vsg::StandardLayout::CENTER_ALIGNMENT;
-            layout->verticalAlignment = vsg::StandardLayout::BOTTOM_ALIGNMENT;
-            layout->color = vsg::vec4(0.0, 1.0, 0.0, 1.0);\
+                auto text = vsg::Text::create();
+                text->text = vsg::stringValue::create(vsg::make_string(n));
+                text->font = font;
+                text->layout = layout;
+                text->setup(0, options);
+                scene->addChild(text);
 
-            auto text = vsg::Text::create();
-            text->text = vsg::stringValue::create(label.str());
-            text->font = font;
-            text->layout = layout;
-            text->setup(0, options);
-            scene->addChild(text);
+                cursor.y += spacing * 0.9;
+            }
 
             position.x += spacing;
         }
-
-
     }
 
     return scene;
@@ -448,7 +456,7 @@ int main(int argc, char** argv)
     // add a trackball event handler to control the camera view using the mouse
     viewer->addEventHandler(vsg::Trackball::create(camera));
 
-    auto intersectionHandler = IntersectionHandler::create(camera, scene);
+    auto intersectionHandler = IntersectionHandler::create(camera, scene, count);
     viewer->addEventHandler(intersectionHandler);
 
     auto commandGraph = vsg::createCommandGraphForView(window, camera, scene);
@@ -476,6 +484,7 @@ int main(int argc, char** argv)
         // wait for completion of the rendering and present the resulting color buffer to the Window's swap chain.
         viewer->present();
     }
+
 
 
     if (editingGame)
