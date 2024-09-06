@@ -118,6 +118,7 @@ public:
                 {
                     std::cout<<"Well done, you are not a Monica!"<<std::endl;
 
+                    std::cout<<"Finally"<<std::endl;
                 }
             }
         }
@@ -423,7 +424,47 @@ int main(int argc, char** argv)
     print(*grid);
 
     float spacing = 1.1;
-    auto scene = createScene(grid, spacing, options, editingGame);
+
+    auto scene = vsg::Group::create();
+
+    auto board = createScene(grid, spacing, options, editingGame);
+
+    scene->addChild(board);
+
+    {
+        struct ModelBound
+        {
+            vsg::ref_ptr<vsg::Node> node;
+            vsg::dbox bounds;
+        };
+
+        std::list<ModelBound> models;
+
+        vsg::Path filename = "/home/ellen/glTF-Sample-Assets/Models/BrainStem/glTF-Binary/BrainStem.glb";
+        if (auto node = vsg::read_cast<vsg::Node>(filename, options))
+        {
+            vsg::ComputeBounds computeBounds;
+            computeBounds.useNodeBounds = false;
+            node->accept(computeBounds);
+            models.push_back(ModelBound{node, computeBounds.bounds});
+
+
+            auto transform = vsg::MatrixTransform::create();
+            transform->matrix = vsg::rotate(vsg::radians(-90.0), vsg::dvec3(1.0, 0.0, 0.0));
+            transform->addChild(node);
+
+            auto sw = vsg::Switch::create();
+            sw->addChild(false, transform);
+
+            scene->addChild(sw);
+
+            vsg::info("loaded ", node);
+        }
+        else {
+            vsg::info("failed to load ", node);
+
+        }
+    }
 
 
     auto viewer = vsg::Viewer::create();
