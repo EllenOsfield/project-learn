@@ -34,18 +34,28 @@ class IntersectionHandler : public vsg::Inherit<vsg::Visitor, IntersectionHandle
 {
 public:
     vsg::ref_ptr<vsg::Camera> camera;
+    vsg::ref_ptr<vsg::AnimationManager> animationManager;
     vsg::ref_ptr<vsg::Group> scenegraph;
+    vsg::ref_ptr<vsg::Switch> wonSwitch;
+    vsg::ref_ptr<vsg::Animation> wonAnimation;
     double scale = 1.0;
     bool verbose = true;
     int numCorrect = 0;
     int numWrong = 0;
     int sum = 0;
 
-    IntersectionHandler(vsg::ref_ptr<vsg::Camera> in_camera, vsg::ref_ptr<vsg::Group> in_scenegraph, int in_sum) :
+    IntersectionHandler(vsg::ref_ptr<vsg::Camera> in_camera, vsg::ref_ptr<vsg::AnimationManager> in_animationManager, vsg::ref_ptr<vsg::Group> in_scenegraph, int in_sum) :
         camera(in_camera),
+        animationManager(in_animationManager),
         scenegraph(in_scenegraph),
         sum(in_sum)
     {
+
+        wonSwitch = scenegraph->getObject<vsg::Switch>("WonSwitch");
+        wonAnimation = scenegraph->getObject<vsg::Animation>("WonAnimation");
+
+        vsg::info("WonSwitch = ", wonSwitch);
+        vsg::info("WonAnimation = ", wonAnimation);
 
     }
 
@@ -119,6 +129,18 @@ public:
                     std::cout<<"Well done, you are not a Monica!"<<std::endl;
 
                     std::cout<<"Finally"<<std::endl;
+
+
+                    if (wonSwitch)
+                    {
+                        wonSwitch->setSingleChildOn(0);
+
+                    }
+                    if (wonAnimation)
+                    {
+                        animationManager->play(wonAnimation);
+                    }
+
                 }
             }
         }
@@ -467,7 +489,8 @@ int main(int argc, char** argv)
             transform->addChild(node);
 
             auto sw = vsg::Switch::create();
-            sw->addChild(true, transform);
+            sw->setValue("name", "AnimationSwitch");
+            sw->addChild(false, transform);
 
             scene->addChild(sw);
 
@@ -493,6 +516,8 @@ int main(int argc, char** argv)
             if (!animations.empty())
             {
                 wonAnimation = animations.front();
+                scene->setObject("WonSwitch", sw);
+                scene->setObject("WonAnimation", wonAnimation);
             }
 
             vsg::info("loaded ", node);
@@ -532,7 +557,7 @@ int main(int argc, char** argv)
     // add a trackball event handler to control the camera view using the mouse
     viewer->addEventHandler(vsg::Trackball::create(camera));
 
-    auto intersectionHandler = IntersectionHandler::create(camera, scene, count);
+    auto intersectionHandler = IntersectionHandler::create(camera, viewer->animationManager, scene, count);
     viewer->addEventHandler(intersectionHandler);
 
     auto commandGraph = vsg::createCommandGraphForView(window, camera, scene);
@@ -541,10 +566,6 @@ int main(int argc, char** argv)
     // compile all the Vulkan objects and transfer data required to render the scene
     viewer->compile();
 
-    if (wonAnimation)
-    {
-        viewer->animationManager->play(wonAnimation);
-    }
 //
 // Section 3 : execute the frame loop
 //
