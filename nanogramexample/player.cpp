@@ -427,10 +427,21 @@ int main(int argc, char** argv)
 
     auto scene = vsg::Group::create();
 
+
     auto board = createScene(grid, spacing, options, editingGame);
+
+    // compute the extents of the board
+    vsg::ComputeBounds computeBounds;
+    computeBounds.useNodeBounds = false;
+    board->accept(computeBounds);
+    auto gridBounds = computeBounds.bounds;
+    vsg::dvec3 gridCentre = (gridBounds.min + gridBounds.max) * 0.5;
+    double gridSize = vsg::length(gridBounds.max - gridBounds.min);
 
     scene->addChild(board);
 
+
+    vsg::ref_ptr<vsg::Animation> wonAnimation;
     {
         struct ModelBound
         {
@@ -448,15 +459,41 @@ int main(int argc, char** argv)
             node->accept(computeBounds);
             models.push_back(ModelBound{node, computeBounds.bounds});
 
+            auto diameter = vsg::length(computeBounds.bounds.max - computeBounds.bounds.min);
+            vsg::dvec3 origin = (computeBounds.bounds.min + computeBounds.bounds.max) * 0.5;
 
             auto transform = vsg::MatrixTransform::create();
-            transform->matrix = vsg::rotate(vsg::radians(-90.0), vsg::dvec3(1.0, 0.0, 0.0));
+            transform->matrix = vsg::translate(gridCentre + vsg::dvec3(1.0, 0.0, 6.0))   * vsg::scale(gridSize/diameter) * vsg::rotate(vsg::radians(-90.0), vsg::dvec3(1.0, 0.0, 0.0)) * vsg::translate(-origin);
             transform->addChild(node);
 
             auto sw = vsg::Switch::create();
-            sw->addChild(false, transform);
+            sw->addChild(true, transform);
 
             scene->addChild(sw);
+
+
+
+            // find the animations available in scene
+            vsg::FindAnimations findAnimations;
+            node->accept(findAnimations);
+
+            auto animations = findAnimations.animations;
+            auto animationGroups = findAnimations.animationGroups;
+
+            std::cout << "Model contains " << animations.size() << " animations." << std::endl;
+            for (auto& ag : animationGroups)
+            {
+                std::cout << "AnimationGroup " << ag << std::endl;
+                for (auto animation : ag->animations)
+                {
+                    std::cout << "    animation : " << animation->name << std::endl;
+                }
+            }
+
+            if (!animations.empty())
+            {
+                wonAnimation = animations.front();
+            }
 
             vsg::info("loaded ", node);
         }
@@ -477,8 +514,6 @@ int main(int argc, char** argv)
     viewer->addWindow(window);
 
     // set up the camera
-    vsg::ComputeBounds computeBounds;
-    scene->accept(computeBounds);
     double radius = vsg::length(computeBounds.bounds.max - computeBounds.bounds.min) * 0.6;
     double nearFarRatio = 0.001;
 
@@ -506,8 +541,10 @@ int main(int argc, char** argv)
     // compile all the Vulkan objects and transfer data required to render the scene
     viewer->compile();
 
-
-
+    if (wonAnimation)
+    {
+        viewer->animationManager->play(wonAnimation);
+    }
 //
 // Section 3 : execute the frame loop
 //
